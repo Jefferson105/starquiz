@@ -3,6 +3,7 @@ import fetch from "isomorphic-unfetch";
 import CountDown from "../components/countDown";
 import CardChar from "../components/cardChar";
 import DetailChar from "../components/detailChar";
+import FinishGame from "../components/finishGame";
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -11,7 +12,9 @@ export default class Game extends React.Component {
         this.state = {
             characters: props.data.results,
             slide: 0,
-            info: null
+            info: null,
+            points: 0,
+            finish: false
         };
 
         this.getPagination = this.getPagination.bind(this);
@@ -19,6 +22,7 @@ export default class Game extends React.Component {
         this.slideLeft = this.slideLeft.bind(this);
         this.getDetail = this.getDetail.bind(this);
         this.addPoint = this.addPoint.bind(this); 
+        this.finishTime = this.finishTime.bind(this);
 
         this.getPagination(props.data.next);
     }
@@ -52,16 +56,21 @@ export default class Game extends React.Component {
     }
 
     addPoint(point) {
+        const { points } = this.state;
+        this.setState({ points: points + point });
+    }
 
+    finishTime() {
+        this.setState({ finish: true });
     }
 
     render() {
-        const { characters, info } = this.state;
+        const { characters, info, points, finish } = this.state;
         return(
             <section className="game">
                 <h1><img src="/static/img/dart_white.svg" /> StarQuiz</h1>
-                <p></p>
-                <CountDown time={120} />
+                <p>{points}</p>
+                <CountDown finish={this.finishTime} time={120} />
 
                 <nav className="game-content container">
                     <button onClick={this.slideLeft} className="game-content-button"><img src="/static/img/slide-left.svg" /></button>
@@ -69,13 +78,19 @@ export default class Game extends React.Component {
                         <ul id="list-chars" className="game-content-list">
                             {
                                 characters.length ? 
-                                    characters.map((character,i) => <CardChar onGetDetail={this.getDetail} info={character} key={i} />) : ""
+                                    characters.map((character,i) => 
+                                        (finish) ?
+                                        <CardChar finished={true} onPontuation={this.addPoint} onGetDetail={this.getDetail} info={character} key={i} /> :
+                                        <CardChar onPontuation={this.addPoint} onGetDetail={this.getDetail} info={character} key={i} />) 
+                                    : ""
                             }
                         </ul>
                     </div>
                     <button onClick={this.slideRight} className="game-content-button"><img src="/static/img/slide-right.svg" /></button>
                 </nav>
                 
+                { finish ? <FinishGame points={points} /> : "" }
+
                 { info ? <DetailChar info={info} /> : "" }
             </section>
         );

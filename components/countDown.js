@@ -22,8 +22,10 @@ export default class CountDown extends React.Component {
             currentTime -= 1; 
             this.setState({ time: currentTime, timeFormated: formatTime(currentTime) });
         
-            if(!currentTime)
+            if(!currentTime) {
                 clearInterval(timeInterval);
+                this.props.finish();
+            }
         }, 1000);
     }
 
