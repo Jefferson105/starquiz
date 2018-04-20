@@ -18,10 +18,13 @@ export default class CountDown extends React.Component {
 
     componentWillMount() {
         var currentTime = this.state.time;
+
+        // Set interval 1 second
         var timeInterval = setInterval(() => {
             currentTime -= 1; 
             this.setState({ time: currentTime, timeFormated: formatTime(currentTime) });
-        
+            
+            // When time reach 0 clearinterval
             if(!currentTime) {
                 clearInterval(timeInterval);
                 this.props.finish();
@@ -32,8 +35,9 @@ export default class CountDown extends React.Component {
     render() {
         const { timeFormated } = this.state;
         return(
-            <div>
-                <p>{timeFormated}</p>
+            <div className="game-header-counter">
+                <img className="game-header-counter-img" src="/static/img/star-wars.svg" />
+                <span>{timeFormated}</span>
             </div>
         )
     }
