@@ -16,11 +16,11 @@ app.prepare()
     var db;
 
     try {
-        var connection = await MongoClient.connect("mongodb://localhost:27017/");
-        
+        var connection = await MongoClient.connect("mongodb://root:starRootQuiz@ds251849.mlab.com:51849/");
+        //mongodb://localhost:27017/StarQuiz
         //mongodb://root:starRootQuiz@ds251849.mlab.com:51849/starquiz
 
-        db = connection.db("StarQuiz");
+        db = connection.db("starquiz");
     }catch(err) {
         console.error(err);
     }
