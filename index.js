@@ -73,9 +73,9 @@ app.prepare()
         return handle(req, res);
     });
 
-    server.listen(3001, (err) => {
+    server.listen(process.env.PORT || 3001, (err) => {
         if(err) throw err;
-        console.log("> Ready on http://localhost:3001");
+        console.log(`> Ready on http://localhost:${process.env.PORT || 3001}`);
     });
 })
 .catch((ex) => {
