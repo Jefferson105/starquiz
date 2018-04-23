@@ -3,7 +3,6 @@ const next = require("next");
 const stitch = require("mongodb-stitch")
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
-const http = require("http");
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
