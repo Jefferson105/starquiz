@@ -1,7 +1,8 @@
 const express = require("express");
 const next = require("next");
-const { MongoClient } = require("mongodb");
+const stitch = require("mongodb-stitch")
 const bodyParser = require("body-parser");
+const { MongoClient } = require("mongodb");
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -14,37 +15,49 @@ app.prepare()
     server.use(bodyParser.json());
 
     var db;
+    var collection; 
 
+    // Connect mongo
     try {
-        var connection = await MongoClient.connect("mongodb://root:starRootQuiz@ds251849.mlab.com:51849/");
+        var connection = await MongoClient.connect("mongodb://user:12345@ds251849.mlab.com:51849/starquiz");
         //mongodb://localhost:27017/StarQuiz
         //mongodb://root:starRootQuiz@ds251849.mlab.com:51849/starquiz
-
+        //db = connection.db("starquiz");
         db = connection.db("starquiz");
+
+        //var clientPromise = await stitch.StitchClientFactory.create('starquiz-fwikt');
+
+        //db = clientPromise.service('mongodb', 'mongodb-atlas').db('starquiz');
+
+        //await clientPromise.login();
+        collection = await db.collection("pontuation");
     }catch(err) {
         console.error(err);
     }
 
-    const collection = db.collection("pontuation");
-
+    // Save pontuation
     server.post("/api/save", async (req, res) => {
         var user = req.body.user;
         var email = req.body.email;
-        var pontuation = req.body.pontuation;
-
+        var pontuation = Number.parseInt(req.body.pontuation);
+        
         if(user && email && Number.isInteger(pontuation)) {
             try {
-                await collection.insertOne({ user, email, pontuation });
+                var insert = await collection.insertOne({ user, email, pontuation });
 
-                res.json({ success: true, message: "Pontuation saved.", data: { user, email, pontuation } });
+                console.log(insert);
+
+                res.json({ success: true, message: "Pontuation saved.", data: { user, email, pontuation } }).execute();
             }catch(err) {
-                res.json({ success: false, error: error });
+                console.log(err)
+                res.json({ success: false, error: err });
             }
         }else {
             res.json({ success: false, error: "User, email and pontuation are required." });
         }
     });
 
+    // List all pontuation
     server.get("/api/list", async (req, res) => {
         try {
             var pontuations = await collection.find().sort({ pontuation: -1 }).toArray();

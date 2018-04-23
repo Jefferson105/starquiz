@@ -28,7 +28,6 @@ const Score = ({ list = [] }) =>
 
 
 Score.getInitialProps = async function(context) {
-    console.log(context);
     var url = context.req.headers.referer.replace("/score", "").replace("/game", "");
     const res = await fetch(url + "/api/list");
     const { list } = await res.json();
