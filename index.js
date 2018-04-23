@@ -72,10 +72,10 @@ app.prepare()
         return handle(req, res);
     });
 
-    server.listen(process.env.PORT, (err) => {
+    /*server.listen(process.env.PORT, (err) => {
         //if(err) throw err;
         console.log(`> Ready on http://localhost:${process.env.PORT || 3001}`);
-    });
+    });*/
 })
 .catch((ex) => {
     console.error(ex.stack);
