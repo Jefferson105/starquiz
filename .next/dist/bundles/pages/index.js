@@ -161,9 +161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scss_style_scss__ = __webpack_require__("./pages/scss/style.scss");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scss_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__scss_style_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_link__ = __webpack_require__("next/link");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_link__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_menu__ = __webpack_require__("./components/menu.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_menu__ = __webpack_require__("./components/menu.js");
 var _jsxFileName = "/home/jefferson/Documentos/Programacao/javascript/starquiz/pages/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -175,7 +173,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -196,32 +193,32 @@ var Main = function (_React$Component) {
                 "section",
                 { className: "home", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 12
+                        lineNumber: 11
                     }
                 },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_menu__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_menu__["a" /* default */], {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 13
+                        lineNumber: 12
                     }
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "header",
                     { className: "home-header", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 14
+                            lineNumber: 13
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "home-mainImg", src: "/static/img/dart_white.svg", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 15
+                            lineNumber: 14
                         }
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "h1",
                         { className: "home-title", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 16
+                                lineNumber: 15
                             }
                         },
                         "StarQuiz!"
@@ -230,7 +227,7 @@ var Main = function (_React$Component) {
                         "p",
                         { className: "home-txt", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 17
+                                lineNumber: 16
                             }
                         },
                         "Play now and test your knowledge in Star Wars"
@@ -239,7 +236,7 @@ var Main = function (_React$Component) {
                         "a",
                         { href: "/game", className: "home-start", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 18
+                                lineNumber: 17
                             }
                         },
                         "Start"
@@ -248,21 +245,21 @@ var Main = function (_React$Component) {
                         "div",
                         { className: "home-goHow", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 20
+                                lineNumber: 19
                             }
                         },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "p",
                             { className: "home-goHow-txt", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 21
+                                    lineNumber: 20
                                 }
                             },
                             "How to play."
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "home-goHow-down", src: "/static/img/down-arrow.svg", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 22
+                                lineNumber: 21
                             }
                         })
                     )
@@ -271,21 +268,21 @@ var Main = function (_React$Component) {
                     "section",
                     { className: "home-how", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 25
+                            lineNumber: 24
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
                         { className: "container", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 26
+                                lineNumber: 25
                             }
                         },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "h2",
                             { className: "home-how-title", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 27
+                                    lineNumber: 26
                                 }
                             },
                             "How to play"
@@ -295,7 +292,7 @@ var Main = function (_React$Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 28
+                                    lineNumber: 27
                                 }
                             },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -303,7 +300,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 29
+                                        lineNumber: 28
                                     }
                                 },
                                 "The objective of this game is to hit the maximum number of personangens of the Star Wars saga. There will be several cards with the character's photo and you should write the name of this character."
@@ -313,19 +310,19 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 30
+                                        lineNumber: 29
                                     }
                                 },
                                 "On each card there will be two buttons ",
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "/static/img/pencil.svg", __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 30
+                                        lineNumber: 29
                                     }
                                 }),
                                 " ",
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "/static/img/info.svg", __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 30
+                                        lineNumber: 29
                                     }
                                 }),
                                 ", the first is to appear the field to enter the name of the character and the second to see details of the character."
@@ -335,7 +332,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 31
+                                        lineNumber: 30
                                     }
                                 },
                                 "You will have a maximum of two minutes to try to hit as many characters as possible. The counter will be at the top right of your screen along with the score."
@@ -345,7 +342,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 32
+                                        lineNumber: 31
                                     }
                                 },
                                 "For each successful character without looking at the details you will gain 10 points, if you look at the details and hit you you will receive 5 points. Errors will not affect the score. If you hit the name of the character the card will turn green otherwise it will turn red."
@@ -355,7 +352,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 33
+                                        lineNumber: 32
                                     }
                                 },
                                 "At the end of the two minutes you will be able to send your score and will be in the ranking."
@@ -365,7 +362,7 @@ var Main = function (_React$Component) {
                             "footer",
                             { className: "footer", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 35
+                                    lineNumber: 34
                                 }
                             },
                             "Made by \xA9 Jefferson Barbosa"
@@ -374,12 +371,12 @@ var Main = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "home-overlay", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 38
+                        lineNumber: 37
                     }
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("video", { className: "home-clip", loop: true, autoPlay: true, muted: true, poster: "/static/img/bg/sw2.jpg", src: "/static/videos/clip.mp4", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 39
+                        lineNumber: 38
                     }
                 })
             );
@@ -405,13 +402,6 @@ var Main = function (_React$Component) {
 
 module.exports = __webpack_require__("./pages/index.js");
 
-
-/***/ }),
-
-/***/ "next/link":
-/***/ (function(module, exports) {
-
-module.exports = require("next/link");
 
 /***/ }),
 

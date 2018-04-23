@@ -1,5 +1,4 @@
 import "./scss/style.scss";
-import Link from 'next/link';
 import Menu from "../components/menu";
 
 export default class Main extends React.Component {

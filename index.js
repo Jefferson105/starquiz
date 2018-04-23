@@ -3,6 +3,7 @@ const next = require("next");
 const stitch = require("mongodb-stitch")
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
+const http = require("http");
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -64,7 +65,6 @@ app.prepare()
             
             res.json({ success: true, list: pontuations });
         }catch(err) {
-            console.log(err);
             res.json({ success: false, error: err });
         }
     });
@@ -73,7 +73,7 @@ app.prepare()
         return handle(req, res);
     });
 
-    server.listen(process.env.PORT || 3001, (err) => {
+    server.listen(3001, (err) => {
         //if(err) throw err;
         console.log(`> Ready on http://localhost:${process.env.PORT || 3001}`);
     });
