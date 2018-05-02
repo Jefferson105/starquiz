@@ -55,39 +55,19 @@ export default class Game extends React.Component {
             started: false,
             loading: true
         };
-
-        this.getCharsPagination = this.getCharsPagination.bind(this);
         this.getDetail = this.getDetail.bind(this);
         this.addPoint = this.addPoint.bind(this); 
         this.finishTime = this.finishTime.bind(this);
-
-        if(props.data)
-            this.getCharsPagination(props.data.next);
     }
 
-    componentWillMount() {
-        setTimeout(() => {
-            this.setState({ started: true, loading: false })
-        }, 10000);
-    }
+    async componentWillMount() {
+        const { path } = this.props;
+        var res = await fetch(path + "/api/allChars");
+        var characters = await res.json();
+        
+        characters = characters.map((d) => ({ ...d, photo:  `/static/img/chars/${d.name == "Darth Maul" ? d.name.split(" ")[1].replaceSpecialChars().charCodePlus() : d.name.split(" ")[0].replaceSpecialChars().charCodePlus()}.jpeg` }));
 
-    // Get chars in pagination
-    async getCharsPagination(url) {
-        try {
-            var res = await fetch(url);
-            var { next, results } = await res.json();
-            
-            // Map image character
-            if(results.length)
-                results = results.map((r) => ({ ...r, photo:  `/static/img/chars/${r.name.split(" ")[0].replaceSpecialChars().charCodePlus()}.jpeg` }));
-
-            if(next)
-                this.getCharsPagination(next);
-            
-            this.setState({ characters: [...this.state.characters, ...results] });
-        }catch(err) {
-            console.error(err);
-        }
+        this.setState({ characters, started: true, loading: false });
     }
 
     // Change state to modal detail modal
@@ -151,9 +131,10 @@ export default class Game extends React.Component {
     }
 }
 
-Game.getInitialProps = async function() {
-    const res = await fetch(`https://swapi.co/api/people/`);
-    const data = await res.json();
+Game.getInitialProps = async function({ req }) {
+    var host = req.headers.host;
+    var protocol = req.headers.referer.indexOf("https") > -1 ? "https://" : "http://";
+    var path = protocol + host;
 
-    return { data }; 
+    return { path }; 
 }

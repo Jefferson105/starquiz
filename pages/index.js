@@ -1,9 +1,18 @@
 import "./scss/style.scss";
 import Menu from "../components/menu";
+import fetch from "isomorphic-unfetch";
 
 export default class Main extends React.Component {
     constructor() {
         super();
+    }
+
+    scrollPage() {
+        window.scrollTo({
+            "behavior": "smooth",
+            "left": 0,
+            "top": window.innerHeight
+        });
     }
 
     render() {
@@ -18,7 +27,7 @@ export default class Main extends React.Component {
                     
                     <div className="home-goHow">
                         <p className="home-goHow-txt">How to play.</p>
-                        <img className="home-goHow-down" src="/static/img/down-arrow.svg" />
+                        <img onClick={this.scrollPage} className="home-goHow-down" src="/static/img/down-arrow.svg" />
                     </div>
                 </header>
                 <section className="home-how">

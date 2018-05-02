@@ -22,60 +22,12 @@ export default class CardChar extends React.Component {
         this.showDetail = this.showDetail.bind(this);
         this.confirmName = this.confirmName.bind(this);
         this.getName = this.getName.bind(this);
-        this.getDetais = this.getDetais.bind(this);
-
-        // Call function to get all details
-        this.getDetais(["films", "species", "vehicles", "starships", "homeworld"]);
     }
 
     // Change state to finish when receive props
     componentWillReceiveProps() {
         if(this.props.finished)
             this.setState({ finished: this.props.finished });
-    }
-
-    // Get all remain details
-    getDetais(fields) {
-        fields.forEach(async (field) => {
-            var details = this.props.info[field];
-            var allDetails = null;
-            var detail = null;
-
-            for(var i = 0; i < details.length; i++) {
-                try {
-                    var data = await fetch(details[i]);
-                    var res = await data.json();
-
-                    switch(field) {
-                        case "films": 
-                            detail = res.title;
-                            break;
-                        case "species":
-                            detail = res.name;
-                            break;
-                        case "vehicles":
-                            detail = res.name;
-                            break;
-                        case "starships":
-                            detail = res.name;
-                            break;
-                        case "homeworld":
-                            detail = res.name;
-                            break;
-                    }
-
-                    if(allDetails)
-                        allDetails += ", " + detail;
-                    else
-                        allDetails = detail;
-                    
-                }catch(err) {
-                    console.log(err);
-                }
-            }
-
-            this[field] = allDetails;
-        });
     }
 
     // Show input when click on button with the pencil image
@@ -89,10 +41,8 @@ export default class CardChar extends React.Component {
 
         this.state.points = 5;
 
-        var { vehicles, species, films, starships, homeworld } = this;
-
         // Call prop function to open modal with details
-        onGetDetail({ ...info, vehicles, species, films, starships, homeworld });
+        onGetDetail({ ...info });
     }
 
     // submit the name the user entered

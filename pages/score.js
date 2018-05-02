@@ -27,9 +27,12 @@ const Score = ({ list = [] }) =>
     </section>
 
 
-Score.getInitialProps = async function(context) {
-    var url = context.req.headers.referer.replace("/score", "").replace("/game", "");
-    const res = await fetch(url + "/api/list");
+Score.getInitialProps = async function({ req }) {
+    var host = req.headers.host;
+    var protocol = req.headers.referer.indexOf("https") > -1 ? "https://" : "http://";
+    var path = protocol + host;
+
+    const res = await fetch(path + "/api/list");
     const { list } = await res.json();
 
     return { list }; 

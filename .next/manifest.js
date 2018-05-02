@@ -90,7 +90,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9b9b0a2e496212a41adb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "173309e6248d40eb5952"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -755,7 +755,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","3":"bundles/pages/index.js","4":"bundles/pages/score.js"}[chunkId]||chunkId) + "-" + {"0":"d1c1a83663ae51545c03","1":"3763de13a4559be52569","3":"8de5815cef6580e794ae","4":"6b56b3565a4686c09fda"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({"0":"main.js","1":"bundles/pages/_error.js","3":"bundles/pages/index.js","4":"bundles/pages/game.js"}[chunkId]||chunkId) + "-" + {"0":"ed1d8eefd05ac49fbb88","1":"3763de13a4559be52569","3":"e913757d2b913fc54543","4":"6cf1cc411fd27e47962a"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

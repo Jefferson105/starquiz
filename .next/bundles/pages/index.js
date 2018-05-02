@@ -110,6 +110,97 @@ var _default = function _default() {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/isomorphic-unfetch/browser.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = window.fetch || (window.fetch = __webpack_require__("./node_modules/unfetch/dist/unfetch.es.js").default || __webpack_require__("./node_modules/unfetch/dist/unfetch.es.js"));
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/harmony-module.js":
 /***/ (function(module, exports) {
 
@@ -151,6 +242,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scss_style_scss__ = __webpack_require__("./pages/scss/style.scss");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scss_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__scss_style_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_menu__ = __webpack_require__("./components/menu.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_isomorphic_unfetch__ = __webpack_require__("./node_modules/isomorphic-unfetch/browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_isomorphic_unfetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_isomorphic_unfetch__);
 var _jsxFileName = "/home/jefferson/Documentos/Programacao/javascript/starquiz/pages/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -172,6 +265,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var Main = function (_React$Component) {
     _inherits(Main, _React$Component);
 
@@ -182,38 +276,47 @@ var Main = function (_React$Component) {
     }
 
     _createClass(Main, [{
+        key: "scrollPage",
+        value: function scrollPage() {
+            window.scrollTo({
+                "behavior": "smooth",
+                "left": 0,
+                "top": window.innerHeight
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "section",
                 { className: "home", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 11
+                        lineNumber: 20
                     }
                 },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_menu__["a" /* default */], {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 12
+                        lineNumber: 21
                     }
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "header",
                     { className: "home-header", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 13
+                            lineNumber: 22
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "home-mainImg", src: "/static/img/dart_white.svg", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 14
+                            lineNumber: 23
                         }
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "h1",
                         { className: "home-title", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 15
+                                lineNumber: 24
                             }
                         },
                         "StarQuiz!"
@@ -222,7 +325,7 @@ var Main = function (_React$Component) {
                         "p",
                         { className: "home-txt", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 16
+                                lineNumber: 25
                             }
                         },
                         "Play now and test your knowledge in Star Wars"
@@ -231,7 +334,7 @@ var Main = function (_React$Component) {
                         "a",
                         { href: "/game", className: "home-start", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 17
+                                lineNumber: 26
                             }
                         },
                         "Start"
@@ -240,21 +343,21 @@ var Main = function (_React$Component) {
                         "div",
                         { className: "home-goHow", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 19
+                                lineNumber: 28
                             }
                         },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "p",
                             { className: "home-goHow-txt", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 20
+                                    lineNumber: 29
                                 }
                             },
                             "How to play."
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "home-goHow-down", src: "/static/img/down-arrow.svg", __source: {
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { onClick: this.scrollPage, className: "home-goHow-down", src: "/static/img/down-arrow.svg", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 21
+                                lineNumber: 30
                             }
                         })
                     )
@@ -263,21 +366,21 @@ var Main = function (_React$Component) {
                     "section",
                     { className: "home-how", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 24
+                            lineNumber: 33
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
                         { className: "container", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 25
+                                lineNumber: 34
                             }
                         },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "h2",
                             { className: "home-how-title", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 26
+                                    lineNumber: 35
                                 }
                             },
                             "How to play"
@@ -287,7 +390,7 @@ var Main = function (_React$Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 27
+                                    lineNumber: 36
                                 }
                             },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -295,7 +398,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 28
+                                        lineNumber: 37
                                     }
                                 },
                                 "The objective of this game is to hit the maximum number of personangens of the Star Wars saga. There will be several cards with the character's photo and you should write the name of this character."
@@ -305,19 +408,19 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 29
+                                        lineNumber: 38
                                     }
                                 },
                                 "On each card there will be two buttons ",
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "/static/img/pencil.svg", __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 29
+                                        lineNumber: 38
                                     }
                                 }),
                                 " ",
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "/static/img/info.svg", __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 29
+                                        lineNumber: 38
                                     }
                                 }),
                                 ", the first is to appear the field to enter the name of the character and the second to see details of the character."
@@ -327,7 +430,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 30
+                                        lineNumber: 39
                                     }
                                 },
                                 "You will have a maximum of two minutes to try to hit as many characters as possible. The counter will be at the top right of your screen along with the score."
@@ -337,7 +440,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 31
+                                        lineNumber: 40
                                     }
                                 },
                                 "For each successful character without looking at the details you will gain 10 points, if you look at the details and hit you you will receive 5 points. Errors will not affect the score. If you hit the name of the character the card will turn green otherwise it will turn red."
@@ -347,7 +450,7 @@ var Main = function (_React$Component) {
                                 {
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 32
+                                        lineNumber: 41
                                     }
                                 },
                                 "At the end of the two minutes you will be able to send your score and will be in the ranking."
@@ -357,7 +460,7 @@ var Main = function (_React$Component) {
                             "footer",
                             { className: "footer", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 34
+                                    lineNumber: 43
                                 }
                             },
                             "Made by \xA9 Jefferson Barbosa"
@@ -366,12 +469,12 @@ var Main = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "home-overlay", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 37
+                        lineNumber: 46
                     }
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("video", { className: "home-clip", loop: true, autoPlay: true, muted: true, poster: "/static/img/bg/sw2.jpg", src: "/static/videos/clip.mp4", __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 38
+                        lineNumber: 47
                     }
                 })
             );

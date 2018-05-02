@@ -15,7 +15,7 @@ export default class AllCards extends React.Component {
     slideRight() {
         var parentWidth = this.list1.parentElement.offsetWidth;
         var listWidth = this.list1.scrollWidth;
-        var widthTranslated = parentWidth * this.slide.num + Math.round(parentWidth / 2);
+        var widthTranslated = parentWidth * this.slide.num + parentWidth;
 
         if(widthTranslated > listWidth)
             return;
@@ -28,10 +28,12 @@ export default class AllCards extends React.Component {
     }
 
     slideLeft() {
-        this.slide.num--;
-        Array.from(document.getElementsByClassName("game-content-list")).forEach(element =>  {
-            element.style.transform = `translateX(-${this.slide.num * 100}%)`;
-        });
+        if(this.slide.num > 0) {
+            this.slide.num--;
+            Array.from(document.getElementsByClassName("game-content-list")).forEach(element =>  {
+                element.style.transform = `translateX(-${this.slide.num * 100}%)`;
+            });
+        }
     }
 
     render() {

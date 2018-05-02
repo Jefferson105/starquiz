@@ -3,6 +3,7 @@ const next = require("next");
 const stitch = require("mongodb-stitch")
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
+const allChars = require("./allChars.json");
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -66,6 +67,10 @@ app.prepare()
         }catch(err) {
             res.json({ success: false, error: err });
         }
+    });
+
+    server.get("/api/allChars", (req, res) => {
+        res.json(allChars);
     });
 
     server.get("*", (req, res) => {
